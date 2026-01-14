@@ -34,7 +34,7 @@ jobs:
       env:
         CHAVE_GEMINI: ${{ secrets.CHAVE_GEMINI }}
         TOKEN_TELEGRAM: ${{ secrets.TOKEN_TELEGRAM }}
-        CHAT_ID_TELEGRAM: ${{ secrets.CHAT_ID_TELEGRAM }}
+        CHAT_ID_TELEGRAM: "5953297022"
       run: python main.py
 
     - name: Salvar Memória (Commit)
