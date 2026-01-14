@@ -29,7 +29,7 @@ VOZ_B = "pt-BR-AntonioNeural"
 # Defino onde vou salvar o banco de dados local
 CAMINHO_DB = 'memoria_noticias.duckdb'
 
-# Link da música de fundo (GitHub Assets)
+# Link da música de fundo 
 URL_MUSICA = "https://github.com/rafaelreis-hotmart/Audio-Sample-files/raw/master/sample.mp3"
 
 # Verifico se as chaves existem
@@ -255,3 +255,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
