@@ -2,12 +2,11 @@ name: Daily AI Podcast
 
 on:
   schedule:
-    # Roda todo dia as 10:00 UTC (07:00 Brasil)
     - cron: '0 10 * * *'
-  workflow_dispatch: 
+  workflow_dispatch:
 
 permissions:
-  contents: write # Permissão para salvar a memória (duckdb)
+  contents: write
 
 jobs:
   build:
@@ -22,23 +21,24 @@ jobs:
       with:
         python-version: '3.10'
 
-    - name: Instalar FFmpeg (Para áudio)
+    - name: Instalar FFmpeg
       run: sudo apt-get install -y ffmpeg
 
-    - name: Instalar Bibliotecas
+    - name: Instalar Bibliotecas (Modo Forçado)
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install google-generativeai feedparser duckdb edge-tts nest_asyncio pyTelegramBotAPI pydub requests
 
     - name: Rodar o Robô
       env:
         CHAVE_GEMINI: ${{ secrets.CHAVE_GEMINI }}
         TOKEN_TELEGRAM: ${{ secrets.TOKEN_TELEGRAM }}
-        CHAT_ID_TELEGRAM: "5953297022"
+        # Se você já colocou o ID fixo no main.py, essa linha abaixo não é essencial, mas mal não faz
+        CHAT_ID_TELEGRAM: ${{ secrets.CHAT_ID_TELEGRAM }}
       run: python main.py
 
-    - name: Salvar Memória (Commit)
+    - name: Salvar Memória
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        commit_message: "Atualizando memória do DuckDB"
+        commit_message: "🤖 Atualizando memória"
         file_pattern: "*.duckdb"
