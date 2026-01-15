@@ -237,7 +237,7 @@ async def main():
         print(f"Enviando áudio...")
         try:
             # Monto a legenda formatada com Loop
-            caption = "🎧 **Daily AI News**\n\n"
+            caption = "**Daily AI News**\n\n"
             for n in noticias:
                 caption += f"• {n['fonte']} {n['titulo']}\n🔗 {n['link']}\n\n"
 
@@ -255,4 +255,5 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
 
